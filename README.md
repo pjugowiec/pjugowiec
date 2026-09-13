@@ -1,1 +1,50 @@
-![Contributions](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pjugowiec/pjugowiec/main/.github/badges/contributions.json&style=for-the-badge) *(includes private repos)*
+<!-- STATS:START -->
+_Stats will appear after the first run of the "Refresh stats" workflow._
+<!-- STATS:END -->
+
+<!--
+NOTATKI DLA WŁAŚCICIELA (niewidoczne na profilu)
+
+Statystyki powyżej generuje scripts/stats.mjs, uruchamiany przez .github/workflows/stats.yml
+codziennie o 04:00 UTC. Wszystko między znacznikami STATS jest nadpisywane, nie edytuj ręcznie.
+
+1. Token
+   Skrypt musi działać jako Ty (viewer = pjugowiec) i widzieć prywatne kontrybucje.
+   Uwaga: token OAuth z `gh auth token` NIE widzi prywatnych kontrybucji (zwraca ~9 zamiast ~1,3 tys.),
+   więc przed dodaniem sekretu sprawdź wybrany token lokalnie (krok 3).
+
+   Wariant A, classic PAT (sprawdzony wzorzec dla prywatnych kontrybucji):
+     github.com/settings/tokens > Generate new token (classic)
+     Scopes: repo, read:user
+     Expiration: np. 1 rok, wpisz sobie przypomnienie o rotacji.
+     Minus: scope `repo` daje też zapis, token trzymaj wyłącznie w sekrecie Actions.
+
+   Wariant B, fine-grained PAT (tylko odczyt, spróbuj najpierw):
+     github.com/settings/personal-access-tokens/new
+     Resource owner: pjugowiec, Repository access: All repositories
+     Repository permissions: Metadata: Read-only, Contents: Read-only
+     Jeśli dry-run pokaże "In private repositories 0%" albo zaniżoną sumę, przejdź na wariant A.
+
+2. Sekret
+   Repo pjugowiec/pjugowiec > Settings > Secrets and variables > Actions > New repository secret
+     Name: GH_STATS_TOKEN
+     Value: token z kroku 1
+   Albo z terminala: gh secret set GH_STATS_TOKEN
+   Stary sekret GH_PAT (po usuniętym workflow badge'a) można skasować. Widział on prywatne
+   kontrybucje, więc jeśli masz jeszcze ten token, możesz go użyć jako GH_STATS_TOKEN.
+
+3. Weryfikacja lokalna (nic nie zapisuje)
+   GH_STATS_TOKEN=<token> node scripts/stats.mjs --dry-run
+   Suma powinna zgadzać się z kalendarzem na profilu, a udział prywatnych repo być > 0%.
+   Testy: node --test scripts/stats.test.mjs
+
+4. Pierwsze uruchomienie
+   Actions > Refresh stats > Run workflow.
+   Jeśli suma kontrybucji spadnie o ponad 50% względem poprzedniej, run kończy się błędem
+   i nic nie zapisuje (zwykle oznacza to token bez dostępu do prywatnych kontrybucji).
+   Świadomy reset: Run workflow z zaznaczonym "force" albo lokalnie z flagą --force.
+
+5. Konfiguracja
+   Wiersze, progi (PR / code review >= 25) i lista ignorowanych języków: stała DISPLAY
+   na górze scripts/stats.mjs.
+-->

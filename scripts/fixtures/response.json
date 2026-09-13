@@ -1,0 +1,85 @@
+{
+  "main": {
+    "data": {
+      "rateLimit": { "cost": 1, "remaining": 4999, "resetAt": "2026-09-14T05:00:00Z" },
+      "viewer": {
+        "login": "pjugowiec",
+        "lastYear": {
+          "totalCommitContributions": 1188,
+          "totalPullRequestContributions": 41,
+          "totalPullRequestReviewContributions": 12,
+          "totalIssueContributions": 7,
+          "restrictedContributionsCount": 0,
+          "contributionCalendar": {
+            "totalContributions": 1367,
+            "weeks": [
+              { "contributionDays": [ { "contributionCount": 0 }, { "contributionCount": 5 }, { "contributionCount": 3 }, { "contributionCount": 0 }, { "contributionCount": 1 }, { "contributionCount": 0 }, { "contributionCount": 0 } ] },
+              { "contributionDays": [ { "contributionCount": 2 }, { "contributionCount": 0 }, { "contributionCount": 9 } ] }
+            ]
+          },
+          "commitContributionsByRepository": [
+            { "repository": { "isPrivate": true, "name": "SECRET-REPO-ALPHA", "nameWithOwner": "pjugowiec/SECRET-REPO-ALPHA", "description": "SECRET-DESC-ALPHA", "url": "https://github.com/pjugowiec/SECRET-REPO-ALPHA" }, "contributions": { "totalCount": 1100 } },
+            { "repository": { "isPrivate": false, "name": "public-repo" }, "contributions": { "totalCount": 88 } }
+          ],
+          "pullRequestContributionsByRepository": [
+            { "repository": { "isPrivate": true, "name": "SECRET-REPO-BETA", "description": "SECRET-DESC-BETA" }, "contributions": { "totalCount": 40 } },
+            { "repository": { "isPrivate": false }, "contributions": { "totalCount": 1 } }
+          ],
+          "pullRequestReviewContributionsByRepository": [
+            { "repository": { "isPrivate": true, "name": "SECRET-REPO-ALPHA" }, "contributions": { "totalCount": 12 } }
+          ],
+          "issueContributionsByRepository": [
+            { "repository": { "isPrivate": false }, "contributions": { "totalCount": 7 } }
+          ]
+        },
+        "thisYear": { "contributionCalendar": { "totalContributions": 1011 } },
+        "repositoriesContributedTo": { "totalCount": 9 },
+        "repositories": {
+          "pageInfo": { "hasNextPage": true, "endCursor": "CURSOR1" },
+          "nodes": [
+            {
+              "name": "SECRET-REPO-ALPHA", "nameWithOwner": "pjugowiec/SECRET-REPO-ALPHA", "description": "SECRET-DESC-ALPHA", "url": "https://github.com/pjugowiec/SECRET-REPO-ALPHA",
+              "stargazerCount": 2,
+              "languages": { "edges": [
+                { "size": 50000, "node": { "name": "Java", "color": "#b07219" } },
+                { "size": 30000, "node": { "name": "TypeScript", "color": "#3178c6" } },
+                { "size": 90000, "node": { "name": "HTML", "color": "#e34c26" } }
+              ] }
+            },
+            {
+              "name": "fusion-solar-unofficial-client",
+              "stargazerCount": 6,
+              "languages": { "edges": [
+                { "size": 10000, "node": { "name": "Java", "color": "#b07219" } },
+                { "size": 500, "node": { "name": "Shell", "color": "#89e051" } }
+              ] }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "page2": {
+    "data": {
+      "rateLimit": { "cost": 1, "remaining": 4998, "resetAt": "2026-09-14T05:00:00Z" },
+      "viewer": {
+        "repositories": {
+          "pageInfo": { "hasNextPage": false, "endCursor": null },
+          "nodes": [
+            {
+              "name": "SECRET-REPO-GAMMA", "description": "SECRET-DESC-GAMMA",
+              "stargazerCount": 0,
+              "languages": { "edges": [
+                { "size": 8000, "node": { "name": "Kotlin", "color": "#A97BFF" } },
+                { "size": 6000, "node": { "name": "Python", "color": "#3572A5" } },
+                { "size": 3000, "node": { "name": "C#", "color": "#178600" } },
+                { "size": 1000, "node": { "name": "Go", "color": "#00ADD8" } },
+                { "size": 400, "node": { "name": "<script>", "color": "javascript:alert(1)" } }
+              ] }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
