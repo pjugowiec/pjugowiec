@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="86" viewBox="0 0 400 86" role="img">
-<title>Top languages: PHP 43.0%, C# 38.0%, JavaScript 13.6%, Java 1.9%, TypeScript 1.5%, Other 2.0%</title>
+<title>Top languages: Java 41.8%, TypeScript 23.4%, Pascal 22.7%, Python 5.7%, JavaScript 4.7%, Other 1.7%</title>
 <style>text{font:12px -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;fill:#767676}</style>
 <clipPath id="bar"><rect width="400" height="10" rx="5"/></clipPath>
-<g clip-path="url(#bar)"><rect x="0.00" y="0" width="171.98" height="10" fill="#4F5D95"/><rect x="171.98" y="0" width="152.05" height="10" fill="#7355dd"/><rect x="324.03" y="0" width="54.42" height="10" fill="#f1e05a"/><rect x="378.45" y="0" width="7.47" height="10" fill="#b07219"/><rect x="385.93" y="0" width="6.17" height="10" fill="#3178c6"/><rect x="392.09" y="0" width="7.91" height="10" fill="#8b949e"/></g>
-<circle cx="5" cy="30" r="5" fill="#4F5D95"/><text x="16" y="34">PHP 43.0%</text>
-<circle cx="205" cy="30" r="5" fill="#7355dd"/><text x="216" y="34">C# 38.0%</text>
-<circle cx="5" cy="52" r="5" fill="#f1e05a"/><text x="16" y="56">JavaScript 13.6%</text>
-<circle cx="205" cy="52" r="5" fill="#b07219"/><text x="216" y="56">Java 1.9%</text>
-<circle cx="5" cy="74" r="5" fill="#3178c6"/><text x="16" y="78">TypeScript 1.5%</text>
-<circle cx="205" cy="74" r="5" fill="#8b949e"/><text x="216" y="78">Other 2.0%</text>
+<g clip-path="url(#bar)"><rect x="0.00" y="0" width="167.30" height="10" fill="#b07219"/><rect x="167.30" y="0" width="93.61" height="10" fill="#3178c6"/><rect x="260.91" y="0" width="90.91" height="10" fill="#E3F171"/><rect x="351.82" y="0" width="22.86" height="10" fill="#3572A5"/><rect x="374.67" y="0" width="18.70" height="10" fill="#f1e05a"/><rect x="393.37" y="0" width="6.63" height="10" fill="#8b949e"/></g>
+<circle cx="5" cy="30" r="5" fill="#b07219"/><text x="16" y="34">Java 41.8%</text>
+<circle cx="205" cy="30" r="5" fill="#3178c6"/><text x="216" y="34">TypeScript 23.4%</text>
+<circle cx="5" cy="52" r="5" fill="#E3F171"/><text x="16" y="56">Pascal 22.7%</text>
+<circle cx="205" cy="52" r="5" fill="#3572A5"/><text x="216" y="56">Python 5.7%</text>
+<circle cx="5" cy="74" r="5" fill="#f1e05a"/><text x="16" y="78">JavaScript 4.7%</text>
+<circle cx="205" cy="74" r="5" fill="#8b949e"/><text x="216" y="78">Other 1.7%</text>
 </svg>
