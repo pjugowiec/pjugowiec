@@ -22,7 +22,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      # Check out the branch tip, not the triggering SHA, so a run started right after a push
+      # uses the latest script.
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - uses: actions/setup-node@v4
         with:
@@ -47,4 +51,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add README.md assets
           git commit -m "chore: refresh stats"
+          git pull --rebase origin main
           git push
