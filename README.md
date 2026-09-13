@@ -1,3 +1,14 @@
+### Hi, I'm Patryk
+
+Software engineer from Poland. I design and ship distributed, multi-tenant systems end to end,
+mostly with Java and Spring Boot on the backend and Angular on the frontend.
+
+Lately I've been focused on identity and access management and on tooling around LLMs.
+
+Most of my work lives in private repositories, so the numbers below include private contributions.
+
+Contact: [contact@pjugowiec.com](mailto:contact@pjugowiec.com)
+
 <!-- STATS:START -->
 <!-- stats:total=1370 -->
 **1,370** contributions in the last 12 months

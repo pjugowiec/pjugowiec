@@ -67,12 +67,33 @@ test('privacy: queries never select repository identity fields', () => {
     const names = q.match(/\bname\b/g) ?? [];
     const languageNames = q.match(/node\s*\{\s*name\s+color\s*\}/g) ?? [];
     assert.equal(names.length, languageNames.length, 'unexpected `name` field in query');
-    // Every `repository { ... }` selection is exactly `isPrivate`.
-    for (const m of q.matchAll(/repository\s*\{([^}]*)\}/g)) {
-      assert.equal(m[1].trim(), 'isPrivate');
+    // Every `repository { ... }` selection holds only privacy/fork flags and language sizes.
+    for (const sel of repositorySelections(q)) {
+      const rest = sel
+        .replace(/languages\([^)]*\)\s*\{\s*edges\s*\{\s*size\s+node\s*\{\s*name\s+color\s*\}\s*\}\s*\}/, '')
+        .split(/\s+/)
+        .filter(Boolean);
+      assert.ok(rest.every((f) => f === 'isPrivate' || f === 'isFork'), `unexpected repository fields: ${rest}`);
     }
   }
+  assert.equal(repositorySelections(QUERY_MAIN).length, 4);
 });
+
+function repositorySelections(query) {
+  const out = [];
+  for (const m of query.matchAll(/\brepository\s*\{/g)) {
+    let depth = 1;
+    let i = m.index + m[0].length;
+    const start = i;
+    while (depth > 0) {
+      if (query[i] === '{') depth++;
+      else if (query[i] === '}') depth--;
+      i++;
+    }
+    out.push(query.slice(start, i - 1));
+  }
+  return out;
+}
 
 test('privacy: rendered markdown and svg contain no private repository names or descriptions', async () => {
   const stats = await collect();
@@ -113,16 +134,16 @@ test('aggregate computes totals, active days and private share', async () => {
   assert.equal(s.reposContributedTo, 9);
   assert.equal(s.stars, 8);
   assert.deepEqual(s.activeDays, { active: 5, total: 10 });
-  assert.equal(Math.round(s.privateShare * 100), 92);
+  assert.equal(Math.round(s.privateShare * 100), 93);
 });
 
-test('languages: ignore list applied before normalising, top 5 plus Other', async () => {
+test('languages: only repos committed to in the last 12 months, forks excluded, ignore list, top 5 plus Other', async () => {
   const { languages } = await collect();
   assert.deepEqual(
     languages.map((l) => [l.name, l.percent.toFixed(1)]),
     [['Java', '55.4'], ['TypeScript', '27.7'], ['Kotlin', '7.4'], ['Python', '5.5'], ['C#', '2.8'], ['Other', '1.3']],
   );
-  assert.ok(!languages.some((l) => l.name === 'HTML' || l.name === 'Shell'));
+  assert.ok(!languages.some((l) => ['HTML', 'Shell', 'C++'].includes(l.name)));
 });
 
 test('svg escapes language names and rejects non-hex colors', () => {

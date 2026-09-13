@@ -36,20 +36,24 @@ const REPOS_FRAGMENT = `
 fragment Repos on User {
   repositories(first: 100, after: $cursor, ownerAffiliations: [OWNER], isFork: false) {
     pageInfo { hasNextPage endCursor }
-    nodes {
-      stargazerCount
-      languages(first: 100, orderBy: { field: SIZE, direction: DESC }) {
-        edges { size node { name color } }
-      }
-    }
+    nodes { stargazerCount }
   }
 }`;
 
-const byRepository = (field) => `
+const byRepository = (field, extra = '') => `
       ${field}(maxRepositories: 100) {
-        repository { isPrivate }
+        repository { isPrivate${extra} }
         contributions { totalCount }
       }`;
+
+// Languages come from repositories committed to in the last 12 months (any owner),
+// so the bar reflects current work rather than old personal projects.
+const LANGUAGES = `
+          isFork
+          languages(first: 100, orderBy: { field: SIZE, direction: DESC }) {
+            edges { size node { name color } }
+          }
+        `;
 
 export const QUERY_MAIN = `
 query Stats($ytdFrom: DateTime!, $ytdTo: DateTime!, $cursor: String) {
@@ -65,7 +69,7 @@ query Stats($ytdFrom: DateTime!, $ytdTo: DateTime!, $cursor: String) {
       contributionCalendar {
         totalContributions
         weeks { contributionDays { contributionCount } }
-      }${byRepository('commitContributionsByRepository')}${byRepository('pullRequestContributionsByRepository')}${byRepository('pullRequestReviewContributionsByRepository')}${byRepository('issueContributionsByRepository')}
+      }${byRepository('commitContributionsByRepository', LANGUAGES)}${byRepository('pullRequestContributionsByRepository')}${byRepository('pullRequestReviewContributionsByRepository')}${byRepository('issueContributionsByRepository')}
     }
     thisYear: contributionsCollection(from: $ytdFrom, to: $ytdTo) {
       contributionCalendar { totalContributions }
@@ -189,7 +193,7 @@ export function aggregate(viewer, repoNodes, display = DISPLAY) {
     if (list.length >= 100) truncated.push(field);
     for (const entry of list) {
       allCount += entry.contributions.totalCount;
-      if (entry.repository.isPrivate) privateCount += entry.contributions.totalCount;
+      if (entry.repository?.isPrivate) privateCount += entry.contributions.totalCount;
     }
   }
 
@@ -205,15 +209,18 @@ export function aggregate(viewer, repoNodes, display = DISPLAY) {
     stars: repoNodes.reduce((sum, r) => sum + r.stargazerCount, 0),
     activeDays,
     privateShare: allCount > 0 ? privateCount / allCount : 0,
-    languages: aggregateLanguages(repoNodes, display.languages),
+    languages: aggregateLanguages(
+      (c.commitContributionsByRepository ?? []).map((e) => e.repository).filter((r) => r && !r.isFork),
+      display.languages,
+    ),
     truncated,
   };
 }
 
-function aggregateLanguages(repoNodes, { top, ignore }) {
+function aggregateLanguages(repos, { top, ignore }) {
   const sizes = new Map();
-  for (const repo of repoNodes) {
-    for (const { size, node } of repo.languages.edges) {
+  for (const repo of repos) {
+    for (const { size, node } of repo.languages?.edges ?? []) {
       if (ignore.includes(node.name)) continue;
       const prev = sizes.get(node.name) ?? { size: 0, color: node.color };
       sizes.set(node.name, { size: prev.size + size, color: prev.color ?? node.color });

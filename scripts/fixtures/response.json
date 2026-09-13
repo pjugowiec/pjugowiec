@@ -18,8 +18,48 @@
             ]
           },
           "commitContributionsByRepository": [
-            { "repository": { "isPrivate": true, "name": "SECRET-REPO-ALPHA", "nameWithOwner": "pjugowiec/SECRET-REPO-ALPHA", "description": "SECRET-DESC-ALPHA", "url": "https://github.com/pjugowiec/SECRET-REPO-ALPHA" }, "contributions": { "totalCount": 1100 } },
-            { "repository": { "isPrivate": false, "name": "public-repo" }, "contributions": { "totalCount": 88 } }
+            {
+              "repository": {
+                "isPrivate": true, "isFork": false,
+                "name": "SECRET-REPO-ALPHA", "nameWithOwner": "acme/SECRET-REPO-ALPHA", "description": "SECRET-DESC-ALPHA", "url": "https://github.com/acme/SECRET-REPO-ALPHA",
+                "languages": { "edges": [
+                  { "size": 50000, "node": { "name": "Java", "color": "#b07219" } },
+                  { "size": 30000, "node": { "name": "TypeScript", "color": "#3178c6" } },
+                  { "size": 90000, "node": { "name": "HTML", "color": "#e34c26" } }
+                ] }
+              },
+              "contributions": { "totalCount": 1100 }
+            },
+            {
+              "repository": {
+                "isPrivate": false, "isFork": false, "name": "public-repo",
+                "languages": { "edges": [
+                  { "size": 10000, "node": { "name": "Java", "color": "#b07219" } },
+                  { "size": 500, "node": { "name": "Shell", "color": "#89e051" } }
+                ] }
+              },
+              "contributions": { "totalCount": 80 }
+            },
+            {
+              "repository": {
+                "isPrivate": true, "isFork": false, "name": "SECRET-REPO-GAMMA", "description": "SECRET-DESC-GAMMA",
+                "languages": { "edges": [
+                  { "size": 8000, "node": { "name": "Kotlin", "color": "#A97BFF" } },
+                  { "size": 6000, "node": { "name": "Python", "color": "#3572A5" } },
+                  { "size": 3000, "node": { "name": "C#", "color": "#178600" } },
+                  { "size": 1000, "node": { "name": "Go", "color": "#00ADD8" } },
+                  { "size": 400, "node": { "name": "<script>", "color": "javascript:alert(1)" } }
+                ] }
+              },
+              "contributions": { "totalCount": 8 }
+            },
+            {
+              "repository": {
+                "isPrivate": false, "isFork": true, "name": "SECRET-FORK",
+                "languages": { "edges": [ { "size": 999999, "node": { "name": "C++", "color": "#f34b7d" } } ] }
+              },
+              "contributions": { "totalCount": 0 }
+            }
           ],
           "pullRequestContributionsByRepository": [
             { "repository": { "isPrivate": true, "name": "SECRET-REPO-BETA", "description": "SECRET-DESC-BETA" }, "contributions": { "totalCount": 40 } },
@@ -37,23 +77,8 @@
         "repositories": {
           "pageInfo": { "hasNextPage": true, "endCursor": "CURSOR1" },
           "nodes": [
-            {
-              "name": "SECRET-REPO-ALPHA", "nameWithOwner": "pjugowiec/SECRET-REPO-ALPHA", "description": "SECRET-DESC-ALPHA", "url": "https://github.com/pjugowiec/SECRET-REPO-ALPHA",
-              "stargazerCount": 2,
-              "languages": { "edges": [
-                { "size": 50000, "node": { "name": "Java", "color": "#b07219" } },
-                { "size": 30000, "node": { "name": "TypeScript", "color": "#3178c6" } },
-                { "size": 90000, "node": { "name": "HTML", "color": "#e34c26" } }
-              ] }
-            },
-            {
-              "name": "fusion-solar-unofficial-client",
-              "stargazerCount": 6,
-              "languages": { "edges": [
-                { "size": 10000, "node": { "name": "Java", "color": "#b07219" } },
-                { "size": 500, "node": { "name": "Shell", "color": "#89e051" } }
-              ] }
-            }
+            { "name": "SECRET-REPO-ALPHA", "nameWithOwner": "pjugowiec/SECRET-REPO-ALPHA", "description": "SECRET-DESC-ALPHA", "url": "https://github.com/pjugowiec/SECRET-REPO-ALPHA", "stargazerCount": 2 },
+            { "name": "fusion-solar-unofficial-client", "stargazerCount": 6 }
           ]
         }
       }
@@ -66,17 +91,7 @@
         "repositories": {
           "pageInfo": { "hasNextPage": false, "endCursor": null },
           "nodes": [
-            {
-              "name": "SECRET-REPO-GAMMA", "description": "SECRET-DESC-GAMMA",
-              "stargazerCount": 0,
-              "languages": { "edges": [
-                { "size": 8000, "node": { "name": "Kotlin", "color": "#A97BFF" } },
-                { "size": 6000, "node": { "name": "Python", "color": "#3572A5" } },
-                { "size": 3000, "node": { "name": "C#", "color": "#178600" } },
-                { "size": 1000, "node": { "name": "Go", "color": "#00ADD8" } },
-                { "size": 400, "node": { "name": "<script>", "color": "javascript:alert(1)" } }
-              ] }
-            }
+            { "name": "SECRET-REPO-GAMMA", "description": "SECRET-DESC-GAMMA", "stargazerCount": 0 }
           ]
         }
       }
