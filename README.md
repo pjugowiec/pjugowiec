@@ -66,6 +66,6 @@ codziennie o 04:00 UTC. Wszystko między znacznikami STATS jest nadpisywane, nie
    Świadomy reset: Run workflow z zaznaczonym "force" albo lokalnie z flagą --force.
 
 5. Konfiguracja
-   Wiersze, progi (PR / code review >= 25) i lista ignorowanych języków: stała DISPLAY
+   Wiersze, próg (PR >= 25) i lista ignorowanych języków: stała DISPLAY
    na górze scripts/stats.mjs.
 -->

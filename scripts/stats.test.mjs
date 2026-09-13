@@ -158,11 +158,12 @@ test('svg escapes language names and rejects non-hex colors', () => {
 
 // --- rendering -------------------------------------------------------------
 
-test('markdown hides rows below threshold and includes footer', async () => {
+test('markdown shows code reviews, hides rows below threshold and includes footer', async () => {
   const md = renderMarkdown(await collect(), { now: NOW });
   assert.match(md, /\*\*1,367\*\* contributions in the last 12 months/);
   assert.match(md, /\| Pull requests \| 41 \|/);
-  assert.doesNotMatch(md, /Code reviews/);
+  assert.match(md, /\| Code reviews \| 12 \|/);
+  assert.doesNotMatch(renderMarkdown({ ...(await collect()), pullRequests: 3 }, { now: NOW }), /Pull requests/);
   assert.doesNotMatch(md, /Stars|Issues/);
   assert.match(md, /!\[.*\]\(assets\/langs\.svg\)/);
   assert.match(md, /Last updated: 2026-09-14T04:00:12Z · includes private contributions/);

@@ -19,7 +19,7 @@ const DROP_RATIO = 0.5;
 
 export const DISPLAY = {
   rows: ['activeDays', 'privateShare', 'commits', 'pullRequests', 'reviews'],
-  threshold: { pullRequests: 25, reviews: 25 },
+  threshold: { pullRequests: 25 },
   languages: { top: 5, ignore: ['HTML', 'CSS', 'SCSS', 'Dockerfile', 'Shell', 'Makefile'] },
 };
 
