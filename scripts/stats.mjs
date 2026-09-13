@@ -253,16 +253,13 @@ const ROWS = {
   stars: { label: 'Stars earned', value: (s) => fmt(s.stars) },
 };
 
-const FOOTER = /^Last updated: .*$/m;
-
-export function renderMarkdown(stats, { now, display = DISPLAY }) {
+export function renderMarkdown(stats, { display = DISPLAY } = {}) {
   const rows = display.rows
     .filter((key) => !(key in display.threshold) || stats[key] >= display.threshold[key])
     .map((key) => `| ${ROWS[key].label} | ${ROWS[key].value(stats)} |`);
   const alt = stats.languages.length
     ? `Top languages: ${stats.languages.map((l) => `${l.name} ${l.percent.toFixed(1)}%`).join(', ')}`
     : 'Top languages: no data';
-  const stamp = now.toISOString().replace(/\.\d{3}Z$/, 'Z');
 
   return [
     `<!-- stats:total=${stats.totalContributions} -->`,
@@ -273,8 +270,6 @@ export function renderMarkdown(stats, { now, display = DISPLAY }) {
     ...rows,
     '',
     `![${alt.replace(/[[\]]/g, '')}](assets/langs.svg)`,
-    '',
-    `Last updated: ${stamp} · includes private contributions`,
   ].join('\n');
 }
 
@@ -407,8 +402,7 @@ export async function main({ argv, env, fetch: fetchImpl, cwd, now, stdout, stde
       );
     }
 
-    let block = renderMarkdown(stats, { now });
-    if (old !== null && old.replace(FOOTER, '') === block.replace(FOOTER, '')) block = old;
+    const block = renderMarkdown(stats);
     const svg = renderSvg(stats.languages);
 
     if (opts.dryRun) {

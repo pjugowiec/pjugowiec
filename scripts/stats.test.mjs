@@ -97,7 +97,7 @@ function repositorySelections(query) {
 
 test('privacy: rendered markdown and svg contain no private repository names or descriptions', async () => {
   const stats = await collect();
-  const md = renderMarkdown(stats, { now: NOW });
+  const md = renderMarkdown(stats);
   const svg = renderSvg(stats.languages);
   assert.doesNotMatch(JSON.stringify(stats), SENTINEL);
   assert.doesNotMatch(md, SENTINEL);
@@ -158,15 +158,15 @@ test('svg escapes language names and rejects non-hex colors', () => {
 
 // --- rendering -------------------------------------------------------------
 
-test('markdown shows code reviews, hides rows below threshold and includes footer', async () => {
-  const md = renderMarkdown(await collect(), { now: NOW });
+test('markdown shows code reviews, hides rows below threshold, has no footer', async () => {
+  const md = renderMarkdown(await collect());
   assert.match(md, /\*\*1,367\*\* contributions in the last 12 months/);
   assert.match(md, /\| Pull requests \| 41 \|/);
   assert.match(md, /\| Code reviews \| 12 \|/);
-  assert.doesNotMatch(renderMarkdown({ ...(await collect()), pullRequests: 3 }, { now: NOW }), /Pull requests/);
+  assert.doesNotMatch(renderMarkdown({ ...(await collect()), pullRequests: 3 }), /Pull requests/);
   assert.doesNotMatch(md, /Stars|Issues/);
   assert.match(md, /!\[.*\]\(assets\/langs\.svg\)/);
-  assert.match(md, /Last updated: 2026-09-14T04:00:12Z · includes private contributions/);
+  assert.doesNotMatch(md, /Last updated/);
   assert.match(md, /<!-- stats:total=1367 -->/);
 });
 
@@ -210,7 +210,7 @@ test('paginates repositories with the cursor', async () => {
   }
 });
 
-test('unchanged numbers keep the old timestamp (no diff)', async () => {
+test('unchanged numbers produce no diff on a later day', async () => {
   const dir = await workspace();
   try {
     assert.equal((await run(dir)).code, 0);
