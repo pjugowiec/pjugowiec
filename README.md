@@ -1,5 +1,17 @@
 <!-- STATS:START -->
-_Stats will appear after the first run of the "Refresh stats" workflow._
+<!-- stats:total=1370 -->
+**1,370** contributions in the last 12 months
+
+| Metric | Value |
+| :--- | ---: |
+| Active days | 140 / 365 |
+| In private repositories | 99% |
+| Commits | 1,197 |
+| Pull requests | 102 |
+
+![Top languages: PHP 43.0%, C# 38.0%, JavaScript 13.6%, Java 1.9%, TypeScript 1.5%, Other 2.0%](assets/langs.svg)
+
+Last updated: 2026-09-13T17:27:52Z · includes private contributions
 <!-- STATS:END -->
 
 <!--
