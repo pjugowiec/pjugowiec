@@ -13,7 +13,7 @@ Contact: [contact@pjugowiec.com](mailto:contact@pjugowiec.com)
 
 | Metric | Value |
 | :--- | ---: |
-| Active days | 140 / 367 |
+| Active days | 140 / 368 |
 | In private repositories | 99% |
 | Commits | 1,202 |
 | Pull requests | 102 |
