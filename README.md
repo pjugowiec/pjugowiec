@@ -8,18 +8,18 @@ Lately I've been focused on identity and access management and on tooling around
 Contact: [contact@pjugowiec.com](mailto:contact@pjugowiec.com)
 
 <!-- STATS:START -->
-<!-- stats:total=1813 -->
-**1,813** contributions in the last 12 months
+<!-- stats:total=1827 -->
+**1,827** contributions in the last 12 months
 
 | Metric | Value |
 | :--- | ---: |
-| Active days | 154 / 370 |
+| Active days | 155 / 371 |
 | In private repositories | 99% |
-| Commits | 1,640 |
+| Commits | 1,654 |
 | Pull requests | 102 |
 | Code reviews | 8 |
 
-![Top languages: Python 41.2%, Java 33.8%, TypeScript 18.9%, JavaScript 3.8%, Pascal 1.0%, Other 1.3%](assets/langs.svg)
+![Top languages: Python 42.1%, Java 33.2%, TypeScript 18.6%, JavaScript 3.7%, Pascal 1.0%, Other 1.4%](assets/langs.svg)
 <!-- STATS:END -->
 
 <!--
